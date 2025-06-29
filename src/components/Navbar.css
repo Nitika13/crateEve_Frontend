@@ -1,0 +1,34 @@
+.pastel-navbar {
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
+  padding: 0.7rem 1.5rem;
+  border-bottom: 3px solid #ffc1cc;
+}
+
+.pastel-logo {
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 1.7rem;
+  color:#d24c9d;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pastel-logo:hover {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.pastel-btn {
+  border-radius: 20px;
+  font-weight: 500;
+  padding: 6px 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.pastel-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+}
+
+.pastel-role {
+  font-size: 0.95rem;
+  color: white;
+}

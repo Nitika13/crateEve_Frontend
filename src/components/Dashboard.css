@@ -1,0 +1,65 @@
+.dashboard-container {
+  background: #fef6f9; /* same pastel pink as ProductList */
+  padding: 40px;
+  border-radius: 20px;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+  color: #5e548e;
+  margin-bottom: 40px;
+}
+
+/* Gradient pastel cards */
+.stat-card {
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  color: #333;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(to right, #fbeaff, #fdfbff);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Optional: additional gradient classes if needed */
+.bg-gradient-pink {
+  background: linear-gradient(135deg, #fbc4ab, #ffdac1);
+}
+.bg-gradient-purple {
+  background: linear-gradient(135deg, #cdb4db, #e0bbe4);
+}
+.bg-gradient-mint {
+  background: linear-gradient(135deg, #b5ead7, #d0f4de);
+}
+.bg-gradient-peach {
+  background: linear-gradient(135deg, #ffd6a5, #ffe5b4);
+}
+
+
+.btn-pastel {
+  background-color: #f6c1e2;
+  color: #4a4a4a;
+  font-weight: 600;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-pastel:hover {
+  background-color: #efb5db;
+  transform: scale(1.05);
+}

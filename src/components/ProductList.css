@@ -1,0 +1,69 @@
+/* ProductList.css */
+
+.pastel-background {
+  background-color: #fff5f9;
+  padding: 30px;
+  border-radius: 12px;
+  /* font-family: 'Poppins', cursive; */
+}
+
+.product-card {
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(220, 182, 255, 0.2);
+  transition: transform 0.3s ease;
+  background: #e1c7cf;
+  background-color: #e1c7cf;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.pastel-title {
+  font-family: 'Pacifico', cursive;
+  color: #e29578;
+  font-size: 2rem;
+}
+
+.pastel-input {
+  border: 2px solid #fbc4ab;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-family: 'Poppins';
+}
+
+.pastel-button {
+  background-color: #dea6b4;
+  border: none;
+  color: #333;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pastel-button:hover {
+  background-color: #fcb1c2;
+  color: #000;
+}
+
+.pastel-edit {
+  background-color: #d8e2dc;
+  border: none;
+  color: #333;
+  border-radius: 8px;
+}
+
+.pastel-delete {
+  background-color: #ffd6a5;
+  border: none;
+  color: #333;
+  border-radius: 8px;
+}
+
+.card-text{
+  font-family: 'Pacifico', cursive, 'Poppins', sans-serif;
+  font-size: 1rem;
+  margin-top: 10px;
+  font-style: italic;
+}

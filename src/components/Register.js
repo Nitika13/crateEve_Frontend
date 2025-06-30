@@ -16,7 +16,7 @@ function Register() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/products");
+      navigate("/api/products");
     }
   }, [navigate]);
 
@@ -27,7 +27,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/auth/register", user);
+      await api.post("/api/auth/register", user);
       toast.success("Registration successful ");
       setTimeout(() => navigate("/login"), 1000);
     } catch {

@@ -13,7 +13,7 @@ function Login() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/products");
+      navigate("/api/products");
     }
   }, [navigate]);
 
@@ -24,12 +24,12 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/auth/login", credentials);
+      const res = await api.post("/api/auth/login", credentials);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("username", credentials.username);
       toast.success("Login successful ");
-      setTimeout(() => navigate("/products"), 1000);
+      setTimeout(() => navigate("/api/products"), 1000);
     } catch {
       toast.error("Login failed ");
     }

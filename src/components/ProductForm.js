@@ -18,7 +18,7 @@ function ProductForm({ isEdit }) {
 
   useEffect(() => {
     if (isEdit && id) {
-      api.get(`/products/${id}`)
+      api.get(`/api/products/${id}`)
         .then((res) => {
           setForm({
             name: res.data.name,
@@ -76,15 +76,15 @@ function ProductForm({ isEdit }) {
 
   try {
     if (isEdit && id) {
-      await api.put(`/products/${id}`, payload, config);
+      await api.put(`/api/products/${id}`, payload, config);
       toast.success("Product updated!");
     } else {
-      await api.post("/products", payload, config);
+      await api.post("/api/products", payload, config);
       toast.success("Product added!");
     }
-    setTimeout(() => navigate("/products"), 1000);
+    setTimeout(() => navigate("/api/products"), 1000);
   } catch (err) {
-    console.error("❌ Submit error:", err);
+    console.error("Submit error:", err);
     toast.error("Something went wrong!");
   }
 };

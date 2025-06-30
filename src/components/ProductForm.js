@@ -36,27 +36,59 @@ function ProductForm({ isEdit }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = {
-      ...form,
-      price: parseFloat(form.price),
-      quantity: parseInt(form.quantity),
-    };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const payload = {
+  //     ...form,
+  //     price: parseFloat(form.price),
+  //     quantity: parseInt(form.quantity),
+  //   };
 
-    try {
-      if (isEdit && id) {
-        await api.put(`/products/${id}`, payload);
-        toast.success("Product updated!");
-      } else {
-        await api.post("/products", payload);
-        toast.success("Product added!");
-      }
-      setTimeout(() => navigate("/products"), 1000);
-    } catch (err) {
-      toast.error("Something went wrong!");
-    }
+  //   try {
+  //     if (isEdit && id) {
+  //       await api.put(`/products/${id}`, payload);
+  //       toast.success("Product updated!");
+  //     } else {
+  //       await api.post("/products", payload);
+  //       toast.success("Product added!");
+  //     }
+  //     setTimeout(() => navigate("/products"), 1000);
+  //   } catch (err) {
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
+
+  // changing for deployement
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  const payload = {
+    ...form,
+    price: parseFloat(form.price),
+    quantity: parseInt(form.quantity),
   };
+
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    if (isEdit && id) {
+      await api.put(`/products/${id}`, payload, config);
+      toast.success("Product updated!");
+    } else {
+      await api.post("/products", payload, config);
+      toast.success("Product added!");
+    }
+    setTimeout(() => navigate("/products"), 1000);
+  } catch (err) {
+    console.error("❌ Submit error:", err);
+    toast.error("Something went wrong!");
+  }
+};
+
 
   return (
     <div className="form-container">

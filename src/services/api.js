@@ -41,7 +41,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://crateeve-backend-1.onrender.com/api",
+  baseURL: process.env.REACT_APP_BACKEND_URL,
+  headers: {
+    "Content-Type": "application/json"
+  }
 });
 
 // Automatically add token before each request

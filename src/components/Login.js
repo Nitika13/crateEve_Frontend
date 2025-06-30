@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Login.css"; 
+import api from "../services/api";
+
 
 function Login() {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
@@ -22,7 +24,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/api/auth/login", credentials);
+      const res = await api.post("auth/login", credentials);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("username", credentials.username);

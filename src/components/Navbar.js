@@ -22,7 +22,7 @@ function Navbar() {
           {role !== "USER" && (
   <button
     className="btn btn-outline-light me-2"
-    onClick={() => navigate("/api/add-product")}
+    onClick={() => navigate("/add-product")}
   >
     + Add Product
   </button>

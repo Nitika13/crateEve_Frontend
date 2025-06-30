@@ -17,7 +17,7 @@ function EditProduct() {
     const fetchProduct = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await api.get(`/api/products/${id}`, {
+        const res = await api.get(`/products/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setProduct(res.data);
@@ -37,11 +37,11 @@ function EditProduct() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await api.put(`/api/products/${id}`, product, {
+      await api.put(`/products/${id}`, product, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage('Product updated successfully!');
-      setTimeout(() => navigate('/api/products'), 1000);
+      setTimeout(() => navigate('/products'), 1000);
     } catch (err) {
       console.error('Update failed:', err);
       setMessage('Failed to update product');

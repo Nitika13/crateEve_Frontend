@@ -75,7 +75,7 @@ const handleSearch = async (e) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await api.delete(`/api/products/${id}`);
+      const res = await api.delete(`/products/${id}`);
       if (res.status === 200 || res.status === 204) {
         setProducts(products.filter((p) => p.id !== id));
       }
@@ -134,7 +134,7 @@ const handleSearch = async (e) => {
                     <div className="card-footer d-flex justify-content-between">
                       <button
                         className="btn btn-sm pastel-edit"
-                        onClick={() => navigate(`/api/edit-product/${prod.id}`)}
+                        onClick={() => navigate(`/edit-product/${prod.id}`)}
                       >
                         🦋Edit
                       </button>

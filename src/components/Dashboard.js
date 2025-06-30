@@ -78,7 +78,7 @@ function Dashboard() {
       </ResponsiveContainer>
 
       <div className="text-center mt-4">
-        <button className="btn btn-pastel" onClick={() => navigate("/api/products")}>
+        <button className="btn btn-pastel" onClick={() => navigate("/products")}>
           View all products
         </button>
       </div>

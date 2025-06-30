@@ -30,40 +30,45 @@ function ProductList() {
     fetchProducts();
   }, [fetchProducts]);
 
- const handleSearch = async (e) => {
+//  const handleSearch = async (e) => {
+//   e.preventDefault();
+
+//   if (!search.trim()) return;
+
+//   const token = localStorage.getItem("token"); // ✅ get JWT token from localStorage
+
+//   try {
+//     const aiRes = await fetch("http://localhost:5000/similar-products", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({
+//         query: search,
+//         token: token  // ✅ include token in request body
+//       }),
+//     });
+
+//     const aiData = await aiRes.json();
+
+//     if (Array.isArray(aiData.similar)) {
+//       console.log("AI Data:", aiData); // ✅ Helpful debug
+//       setProducts(aiData.similar);     // ✅ Display the AI result
+//     } else {
+//       toast.error("AI response was invalid.");
+//     }
+
+//   } catch (err) {
+//     console.error("AI search failed:", err);
+//     toast.error("AI search failed");
+//   }
+// };
+
+const handleSearch = async (e) => {
   e.preventDefault();
-
   if (!search.trim()) return;
-
-  const token = localStorage.getItem("token"); // ✅ get JWT token from localStorage
-
-  try {
-    const aiRes = await fetch("http://localhost:5000/similar-products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        query: search,
-        token: token  // ✅ include token in request body
-      }),
-    });
-
-    const aiData = await aiRes.json();
-
-    if (Array.isArray(aiData.similar)) {
-      console.log("AI Data:", aiData); // ✅ Helpful debug
-      setProducts(aiData.similar);     // ✅ Display the AI result
-    } else {
-      toast.error("AI response was invalid.");
-    }
-
-  } catch (err) {
-    console.error("AI search failed:", err);
-    toast.error("AI search failed");
-  }
+  fetchProducts(search);
 };
-
 
 
 

@@ -17,11 +17,12 @@ function ProductList() {
       const res = await api.get(`/products${query ? `?name=${query}` : ""}`);
       setProducts(res.data);
     } catch (err) {
-      const status = err.response?.status;
-      if (status === 401 || status === 403) {
+      console.error("Error fetching products:", err);
+
+      // Only navigate if token is missing
+      const token = localStorage.getItem("token");
+      if (!token) {
         navigate("/login");
-      } else {
-        console.error("Error fetching products:", err);
       }
     }
   }, [navigate]);

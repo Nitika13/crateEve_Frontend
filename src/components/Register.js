@@ -8,7 +8,8 @@ function Register() {
   const [user, setUser] = useState({
     username: "",
     password: "",
-    role: "USER"
+    role: "USER",
+    managerKey: ""
   });
 
   const navigate = useNavigate();
@@ -26,50 +27,71 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const payload = {
+      username: user.username,
+      password: user.password,
+      role: user.role,
+      ...(user.role === "MANAGER" && { managerKey: user.managerKey }) // only include if MANAGER
+    };
+
     try {
-      await api.post("/auth/register", user);
-      toast.success("Registration successful ");
+      await api.post("/auth/register", payload);
+      toast.success("Registration successful");
       setTimeout(() => navigate("/login"), 1000);
-    } catch {
-      toast.error("Registration failed ");
+    } catch (err) {
+      toast.error(err?.response?.data || "Registration failed");
     }
   };
 
   return (
     <div className="register-container">
-    <div className="register-wrapper">
-      <div className="register-box shadow pastel-bg">
-        <h2>ʚଓ Create Account</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={user.username}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={user.password}
-            onChange={handleChange}
-            required
-          />
-          <select name="role" value={user.role} onChange={handleChange}>
-            <option value="USER">User</option>
-            <option value="ADMIN">Admin</option>
-            <option value="MANAGER">Manager</option>
-          </select>
-          <button type="submit">Register</button>
-        </form>
-        <p className="mt-3">
-          Already have an account?{" "}
-          <span onClick={() => navigate("/login")}>Login</span>
-        </p>
+      <div className="register-wrapper">
+        <div className="register-box shadow pastel-bg">
+          <h2>ʚଓ Create Account</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={user.username}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={user.password}
+              onChange={handleChange}
+              required
+            />
+            <select name="role" value={user.role} onChange={handleChange}>
+              <option value="USER">User</option>
+              <option value="ADMIN">Admin</option>
+              <option value="MANAGER">Manager</option>
+            </select>
+
+            {/* Show manager key input if selected role is MANAGER */}
+            {user.role === "MANAGER" && (
+              <input
+                type="text"
+                name="managerKey"
+                placeholder="Enter Manager Key"
+                value={user.managerKey}
+                onChange={handleChange}
+                required
+              />
+            )}
+
+            <button type="submit">Register</button>
+          </form>
+          <p className="mt-3">
+            Already have an account?{" "}
+            <span onClick={() => navigate("/login")}>Login</span>
+          </p>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

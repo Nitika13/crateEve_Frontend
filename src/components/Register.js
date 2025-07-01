@@ -26,23 +26,30 @@ function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const payload = {
-      username: user.username,
-      password: user.password,
-      role: user.role,
-      ...(user.role === "MANAGER" && { managerKey: user.managerKey }) // only include if MANAGER
-    };
+  // Build the registration URL based on the role
+  let url = "/auth/register";
 
-    try {
-      await api.post("/auth/register", payload);
-      toast.success("Registration successful");
-      setTimeout(() => navigate("/login"), 1000);
-    } catch (err) {
-      toast.error(err?.response?.data || "Registration failed");
+  if (user.role === "MANAGER") {
+    if (!user.managerKey.trim()) {
+      toast.error("Manager key is required!");
+      return;
     }
-  };
+
+    // Add the managerKey as query param
+    url += `?managerKey=${encodeURIComponent(user.managerKey.trim())}`;
+  }
+
+  try {
+    await api.post(url, user);
+    toast.success("Registration successful");
+    setTimeout(() => navigate("/login"), 1000);
+  } catch {
+    toast.error("Registration failed");
+  }
+};
+
 
   return (
     <div className="register-container">
@@ -73,7 +80,7 @@ function Register() {
             </select>
 
             {/* Show manager key input if selected role is MANAGER */}
-            {user.role === "MANAGER" && (
+            {/* {user.role === "MANAGER" && (
               <input
                 type="text"
                 name="managerKey"
@@ -82,7 +89,18 @@ function Register() {
                 onChange={handleChange}
                 required
               />
-            )}
+            )} */}
+            {user.role === "MANAGER" && (
+  <input
+    type="text"
+    name="managerKey"
+    placeholder="Manager Secret Key"
+    value={user.managerKey}
+    onChange={handleChange}
+    required
+  />
+)}
+
 
             <button type="submit">Register</button>
           </form>
